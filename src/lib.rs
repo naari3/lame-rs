@@ -1,7 +1,7 @@
-use std::convert::From;
 use std::ops::Drop;
 use std::os::raw::c_int;
 use std::ptr;
+use std::{convert::From, fmt::Display};
 
 #[derive(Debug)]
 pub enum Error {
@@ -12,6 +12,12 @@ pub enum Error {
     BadSampleFreq,
     InternalError,
     Unknown(c_int),
+}
+
+impl Display for Error {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
 }
 
 impl From<c_int> for Error {
