@@ -15,7 +15,7 @@ pub enum Error {
 }
 
 impl std::error::Error for Error {
-    fn description<'a>(&'a self) -> &'a str {
+    fn description(&self) -> &str {
         match *self {
             Error::Ok => "No problem",
             Error::GenericError => "Generic error",
