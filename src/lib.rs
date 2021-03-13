@@ -14,6 +14,20 @@ pub enum Error {
     Unknown(c_int),
 }
 
+impl std::error::Error for Error {
+    fn description<'a>(&'a self) -> &'a str {
+        match *self {
+            Error::Ok => "No problem",
+            Error::GenericError => "Generic error",
+            Error::NoMem => "No memory",
+            Error::BadBitRate => "Bad bitrate",
+            Error::BadSampleFreq => "Bad sample frequency",
+            Error::InternalError => "Internal error",
+            Error::Unknown(_) => "Unknown error",
+        }
+    }
+}
+
 impl Display for Error {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{:?}", self)
