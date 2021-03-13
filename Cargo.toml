@@ -8,4 +8,4 @@ repository = "https://github.com/charliesome/lame-rs"
 homepage = "https://github.com/charliesome/lame-rs"
 
 [dependencies]
-lame-sys = { version = "0.1.2", features = ["bundled"] }
+lame-sys = { git = "https://github.com/naari3/lame-sys", rev = "ab971c1", features = ["bundled"] }
