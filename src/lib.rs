@@ -72,6 +72,24 @@ pub enum EncodeError {
     Unknown(c_int),
 }
 
+impl std::error::Error for EncodeError {
+    fn description<'a>(&'a self) -> &'a str {
+        match *self {
+            EncodeError::OutputBufferTooSmall => "Output buffer too small",
+            EncodeError::NoMem => "No memory",
+            EncodeError::InitParamsNotCalled => "Init params not called",
+            EncodeError::PsychoAcousticError => "Psycho acoustic error",
+            EncodeError::Unknown(_) => "Unknown",
+        }
+    }
+}
+
+impl Display for EncodeError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
 /// Represents a Lame encoder context.
 pub struct Lame {
     ptr: *mut lame_sys::lame_global_flags,
